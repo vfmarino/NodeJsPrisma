@@ -43,3 +43,22 @@ Comando para inicializar um novo projeto do Prisma. Este comando criará um arqu
 Prisma: É uma biblioteca de banco de dados ORM (Object-Relational Mapping) que permite que os desenvolvedores interajam com bancos de dados relacionais de maneira mais fácil e intuitiva. Ele oferece uma maneira simples de escrever consultas SQL usando uma sintaxe mais amigável, além de oferecer recursos como validação de dados, geração de esquemas, migrações de banco de dados e muito mais.
 
 ### 1° Commit - Created Project using Terminal
+
+***
+
+### 2° Passo
+
+Criando a conecção com mysql:
+1 - mudar schema.prisma para mysql
+2 - mudar e adicionar dados do banco mysql em .env // informativo simples de como fazer na doc do prisma.
+https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/connect-your-database-typescript-postgres
+
+Add user model em "schema.prisma".
+Add JWT_SECRET em ".env"
+
+Migrar o banco com "npx prisma migrate dev --name init"
+Conferir se comando criou banco e a tabela user no workbench.
+
+### 2°Commit - Created DB using prisma.
+
+
