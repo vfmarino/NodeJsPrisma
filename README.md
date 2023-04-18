@@ -61,4 +61,47 @@ Conferir se comando criou banco e a tabela user no workbench.
 
 ### 2°Commit - Created DB using prisma.
 
+***
+
+### 3° Passo
+
+Koa é um framework web para Node.js que foi criado para fornecer uma solução de middleware mais simples e expressiva em comparação com outros frameworks tradicionais, como o Express. Ele é baseado em conceitos como Promises, Generators e Async/Await, o que torna o código mais fácil de ler e entender.Ele pode ser uma boa opção se você precisa de uma solução de middleware mais enxuta e flexível em comparação com outros frameworks Node.js mais robustos e completos.
+
+"npm install koa @koa/router"
+Comando utiliza o Gerenciador de Pacotes Node (npm) para instalar dois pacotes: "koa" e "@koa/router".
+
+"@koa/router" é um pacote que fornece um middleware(interemetidiário) de roteamento para o Koa. Ele permite que você defina rotas de URL e mapeie-as para funções específicas que lidam com as solicitações.
+
+Em package.json
+"start": "node src/index.ts",
+"dev": "nodemon src/index.ts"
+
+No arquivo index.ts:
+
+1 - Importar as dependencias
+const Koa = require('koa')
+const Router = require ('@koa/router')
+
+2 - Criar instancias
+const app = new Koa()
+const router = new Router()
+
+3 - app.use(async (ctx: { body: string; }) => (ctx.body ="Hello World"));
+Essa linha é responsável por definir uma rota no servidor Koa para a raiz do site ("/") e configurar uma função assíncrona que será executada sempre que uma solicitação for feita nessa rota. Essa função define o corpo da resposta como a string "Hello World".
+- app: é uma instância do framework Koa criada no código para gerenciar o servidor web.
+- .use: é um método do Koa usado para definir um middleware, que é uma função que será executada em cada solicitação HTTP recebida pelo servidor. Esse método recebe como parâmetro uma função que define o comportamento do middleware.
+- async: é uma palavra-chave do JavaScript que define uma função assíncrona. Funções assíncronas são usadas para lidar com operações que levam algum tempo para serem concluídas, como solicitações HTTP, banco de dados e outras operações de I/O.
+- (ctx: { body: string; }) =>: é uma função arrow que recebe um objeto de contexto ctx como parâmetro e define o comportamento do middleware. O objeto de contexto ctx contém informações sobre a solicitação HTTP recebida pelo servidor e a resposta que será enviada ao cliente.
+- ctx.body: é uma propriedade do objeto de contexto ctx que representa o corpo da resposta HTTP que será enviada ao cliente. Nesse caso, estamos definindo o corpo da resposta como a string "Hello World".
+
+4 - app.listen(3100, () => {
+    console.log('Server running at: http://localhost:3100')
+})
+Esse comando de lista o servidor web koa na porta determinada e exibi no terminal uma msg no console de que o servidor ewstá funcionando.
+
+## npm run dev
+inicializar o servidor com nodemon
+
+### 3° Commit - Install Koa and Hello world
+
 
