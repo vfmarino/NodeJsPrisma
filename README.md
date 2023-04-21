@@ -104,4 +104,94 @@ inicializar o servidor com nodemon
 
 ### 3° Commit - Install Koa and Hello world
 
+***
 
+### 4° Passo
+
+No arquivo schema.prisma adicionamos a variavel:
+createdAt DateTime @default(now())
+Para identificar quando a data de criação do cadastro.
+
+criado os arquivos:
+config.ts
+logger.ts
+protectedRoutes.ts
+unprotectedRoutes.ts
+
+criado pasta controller com:
+user.ts
+auth.ts
+
+- config.ts:
+O arquivo é utilizado para armazenar variáveis de ambiente e configurar algumas opções do projeto. Usado para armazenar informações sensíveis, como senhas de banco de dados ou chaves de API, sem expor essas informações diretamente no código.
+Vamos usar, a função dotenv.config() para carregar as variáveis de ambiente a partir do arquivo .env e a interface Config para tipar as opções que serão configuradas. Em seguida, são definidas as opções padrão de configuração, que podem ser sobrescritas pelas variáveis de ambiente, caso elas existam.
+Exemplo:
+
+port: +(process.env.PORT || 3000)
+O valor padrão para a porta é 3000, mas se a variável de ambiente PORT estiver definida, ela será usada em vez disso.
+
+
+dotenv.config({ path: ".env" });: Carrega as variáveis de ambiente do arquivo .env no projeto.
+
+debugLogging: boolean;: Define uma propriedade debugLogging do tipo boolean que indica se o modo de depuração está habilitado ou não.
+
+dbsslconn: boolean;: Define uma propriedade dbsslconn do tipo boolean que indica se a conexão com o banco de dados deve ser feita por SSL ou não.
+
+jwtSecret: string;: Define uma propriedade jwtSecret do tipo string que armazena a chave secreta para gerar e validar o token JWT.
+
+databaseUrl: string;: Define uma propriedade databaseUrl do tipo string que armazena a URL de conexão com o banco de dados.
+
+const isDevMode = process.env.NODE_ENV == "development";: Define uma variável isDevMode que verifica se a variável de ambiente NODE_ENV está definida como "development".
+
+debugLogging: isDevMode,: Define a propriedade debugLogging da constante config com o valor da variável isDevMode.
+dbsslconn: !isDevMode,: Define a propriedade dbsslconn da constante config com o valor negado da variável isDevMode.
+A variável isDevMode é uma flag que é definida de acordo com o valor da variável de ambiente NODE_ENV. Quando a variável NODE_ENV está definida como "development", isDevMode recebe o valor booleano true, indicando que o servidor está em modo de desenvolvimento. Caso contrário, isDevMode recebe false, indicando que o servidor está em modo de produção.
+
+
+export { config };: Exporta a constante config para ser utilizada em outros arquivos.
+
+precisamos instalar pelo terminal dotenv:
+"npm install dotenv --save"
+
+- Agora iremos tratar os arquivos protectedRoutes.ts unprotectedRoutes.ts:
+
+Esses arquivos definem quais rotas são protegidas ou não, neste momento incial vamos apenas deixar elas habilitadas com exemplos comentados para futuramente adaptar a necessidade da aplicação.
+
+precisamos instalar pelo terminal
+npm i --save-dev @types/koa__router
+
+- logger.ts:
+O middleware gerado por essa função permite que os logs das requisições do servidor sejam armazenados em arquivos e console, com níveis de log variáveis e formatos coloridos para ajudar a identificar problemas rapidamente durante o desenvolvimento ou produção.Este arquivo é importante para o registro de logs das requisições do cliente e pode ajudar no processo de depuração e monitoramento do aplicativo.
+
+- Importado o objeto Context do Koa.js, que é usado para representar o contexto da requisição HTTP.
+O Context é um objeto que contém informações sobre a requisição HTTP que o servidor recebeu, incluindo informações sobre a URL, método HTTP, cabeçalhos, corpo da mensagem, etc. Ele é fornecido pelo Koa para todos os middlewares que são executados durante o processamento da requisição e permite acessar e manipular essas informações da requisição, bem como definir informações de resposta.
+
+- Importados os objetos transports e format do pacote winston, que é um framework de registro para Node.js.
+Winston é usado para registrar a mensagem de log no formato especificado, no local (arquivo ou console) especificado e no nível especificado (com base no status da solicitação).
+
+- Importado o módulo path do Node.js, que é usado para manipular caminhos de arquivos e direcionalos.
+
+- Função logger que recebe um objeto winstonInstance como parâmetro.
+- Configurado o objeto winstonInstance com o nível de registro a ser usado e os transportes a serem usados para armazenar os logs.
+- Configurado os transportes que serão usados pelo winstonInstance. Neste caso, é usado um transporte para salvar logs de erro em um arquivo e um transporte para imprimir logs de nível de informação no console.
+
+- Definido o middleware de registro que é retornado pela função logger. Este middleware recebe o contexto da requisição e uma função next que é chamada para continuar a execução da requisição.
+
+- Depois é registrado o momento em que a requisição começa a ser processada.
+
+- Chamado o próximo middleware na pilha e, se houver algum erro, o middleware captura o erro e define o status da resposta e o corpo da resposta de acordo com o erro.
+
+- Registrado o momento em que a requisição é concluída e é calculado o tempo total de processamento da requisição.
+
+- Definido o nível de log com base no status da resposta da requisição e é criada a mensagem de log que será registrada.
+
+- Chamado o método log do objeto winstonInstance para registrar o log.
+
+No terminal instalar winston:
+npm i --save-dev @types/winston
+
+e
+npx prisma migrate dev --name init
+para add no schema com a variavel de criação do momento em que o usario foi criado.
+
+### 4° Commit - Created config.ts looger.ts route controll

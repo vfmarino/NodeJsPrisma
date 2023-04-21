@@ -17,6 +17,7 @@ model User{
   password    String
   cpf         String @unique
   telefone    String @unique
+  createdAt   DateTime @default(now())
 
   @@map("users") // para Determinar o nome da tabela
 }
