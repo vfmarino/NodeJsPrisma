@@ -195,3 +195,25 @@ npx prisma migrate dev --name init
 para add no schema com a variavel de criação do momento em que o usario foi criado.
 
 ### 4° Commit - Created config.ts looger.ts route controll
+
+***
+
+### 5 Passo 
+
+Vamos configurar index.ts 
+
+Primeiro instalar os pacotes abaixo:
+npm install koa-jwt
+npm install koa-body
+npm i koa-helmet
+npm install @koa/cors
+npm install koa-cors
+npm i --save-dev @types/koa__cors
+npm install reflect-metadata ( este não estava sendo declaro inicalmente causando crash em nodemon)
+
+Foram adicionados Comentarios no arquivo explicando cada função declarada.
+
+### 5° Commit - Defined new index.ts
+
+
+

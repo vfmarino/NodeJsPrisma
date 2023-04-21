@@ -16,8 +16,8 @@ const config: Config = {
     port: +(process.env.PORT || 3000),
     debugLogging: isDevMode,
     dbsslconn: !isDevMode,
-    jwtSecret: process.env.JWT_SECRET || "VatienDeveloper31/12/2022-@!",
-    databaseUrl: process.env.DATABASE_URL || "mysql://root:abc123@localhost:3306/heptaDB",
+    jwtSecret: process.env.JWT_SECRET || "VatienDeveloper16/04/2023-@!",
+    databaseUrl: process.env.DATABASE_URL || "mysql://root:abc123@localhost:3306/MoneyHiveDB?schema=KoaPrismaMoneyHive",
 };
 
 export { config };
