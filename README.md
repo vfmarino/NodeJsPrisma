@@ -215,5 +215,30 @@ Foram adicionados Comentarios no arquivo explicando cada função declarada.
 
 ### 5° Commit - Defined new index.ts
 
+***
+### 6° Passo
+
+npm install bcryptjs
+npm i --save-dev @types/bcryptjs
+
+Criando arquivo user.ts
+Nesse arquivos definimos o "crud" para user
+Cria, update, findById, findByEmail, Delete.
+
+Criação de user ja funciona
+
+Até aqui ainda nao tinha auth para gerar o JWT token e authorização e fazer o login
+Criado essa função em auth.ts, login e logout
+
+No arquivos protected e unprotedted routes estava dando conflito com rotas de mesmo nome, alteramos para evitar esse conflito e remover os erros.
+
+### 6° Commit - CreateUser and Login Logout
+
+
+
+
+
+
+
 
 
