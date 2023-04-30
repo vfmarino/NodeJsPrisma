@@ -10,14 +10,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id          Int@id @default(autoincrement())
-  name        String @unique
-  email       String @unique
-  password    String
-  cpf         String @unique
-  telefone    String @unique
-  createdAt   DateTime @default(now())
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  email     String   @unique
+  password  String
+  cpf       String   @unique
+  telefone  String   @unique
+  createdAt DateTime @default(now())
 
   @@map("users") // para Determinar o nome da tabela
+}
+
+model CryptoPrice {
+  id              Int      @id @default(autoincrement())
+  coinMarketCapId Int
+  name            String
+  symbol          String
+  price           Float
+  timestamp       DateTime @default(now())
+
+  @@map("cryptoPrices") // Define o nome da tabela.
 }

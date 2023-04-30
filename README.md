@@ -249,8 +249,35 @@ Por ultimo caso tenha algum erro ele retorna 401 dizendo token invalido!
 
 ### 7° Commit GetUserData with JWTtoken
 
+***
 
+### 8 Passo
 
+Primeiro Iremos criar o SCHEMA.primas para salvar as Coin atravez da API da coinMArketCAp
 
+model CryptoPrice {
+  id           Int      @id @default(autoincrement())
+  coinMarketId Int
+  name         String
+  symbol       String
+  price        Float
+  timestamp    DateTime @default(now())
+}
 
+Vamos criar o modelo acima, é importante salvar o ID da CoinMarketCap, pois existem moedas com mesmo nome e também mesmo simbolo, sendo assim para evitar conflito será necessario usar o ID para indentificar as moedas.
+
+npx prisma migrate dev
+
+npm install axios
+
+O axios possui uma sintaxe mais simples e uma API mais amigável para realizar requisições HTTP, além de suportar várias funcionalidades úteis, como a definição de configurações padrão, a interceptação de requisições e respostas, e o suporte a promessas para facilitar o tratamento de erros. simplifica bastante o processo de realizar requisições HTTP no Node.js, tornando o código mais legível e mais fácil de manter.
+
+Criado Aqruivo cryptoPrices.ts
+Faz a chamada na api da coinMarketCap, cria 2 loop
+1 - para alternar a pagina por aparecem 100 moedas por paginas.
+2 - interar e salvar os dados de cada moeda no banco de dados.
+No final ele cria um setInterval para atualizar os valores a cada 5 minutos.
+Dentro do Arquivo adicionamos alguns comentarios para facilitar o entendimento.
+
+### 8° Commit Save CryptoPrices with CoinMarketCap API
 
