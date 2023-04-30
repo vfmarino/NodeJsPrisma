@@ -1,6 +1,8 @@
 import { Context } from "koa";
 import { PrismaClient, Prisma } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { verify } from "jsonwebtoken";
+import { config } from "../config";
 
 const prisma = new PrismaClient();
 
@@ -55,7 +57,34 @@ export default class UserController {
         public static async delete(ctx: Context): Promise<void> {
                 const { id } = ctx.params;
                 await prisma.user.delete({ where: { id: parseInt(id) } });
-                
+
                 ctx.status = 204;
+        }
+
+        public static async getUserData(ctx: Context): Promise<void> {
+                const authHeader = ctx.request.headers.authorization;
+                if (!authHeader) {
+                        ctx.throw(401, "Token não fornecido");
+                }
+                const [, token] = authHeader.split(" ");
+                try {
+                        const decodedToken = verify(token, config.jwtSecret) as { data: { id: number } };
+                        const user = await prisma.user.findUnique({
+                                where: { id: decodedToken.data.id },
+                        select:{
+                                name: true,
+                                email:true,
+                                telefone:true,
+                                cpf:true,
+                        }
+                });
+                        if (!user) {
+                                ctx.throw(404, "Usuário não encontrado");
+                        }
+                        ctx.body = user;
+                } catch (err) {
+                        console.log(err);
+                        ctx.throw(401, "Token inválido");
+                }
         }
 }

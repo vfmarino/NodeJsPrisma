@@ -234,7 +234,17 @@ No arquivos protected e unprotedted routes estava dando conflito com rotas de me
 
 ### 6° Commit - CreateUser and Login Logout
 
+***
+### 7 Passo
 
+Criando GetUserData em user.ts, adicionado rota em protectedRoutes
+Primeiramente GetUserData, verifica se o token enviado no Header foi fornecido, senao objemos erro 401.
+Extrai o token de autorização do cabeçalho. O cabeçalho é uma string que contém a palavra "Bearer" seguida do token. O split é usado para dividir a string em duas partes, ignorando a palavra "Bearer" e extraindo apenas o token.
+Decodifica o token usando a chave secreta jwtSecret definida no arquivo de configuração config. A função verify retorna um objeto contendo os dados do token decodificado. Nesse caso, espera-se que o token contenha um objeto com a propriedade data contendo o ID do usuário como um número.
+Busca os dados de acordo com ID encontrado retornando as propriedades especificadas em delete.
+Se o usuario nao foi encontrado ele gera um Erro 404 com a messagem de usuario nao encontrado
+Atribui o objeto do usuário encontrado à propriedade body do objeto ctx, que será enviado como resposta à requisição.(ctx.body = user)
+Por ultimo caso tenha algum erro ele retorna 401 dizendo token invalido!
 
 
 

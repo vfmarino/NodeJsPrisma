@@ -9,3 +9,6 @@
 {"level":"error","message":"POST /auth/login 500 34ms"}
 {"level":"error","message":"PUT /users/update/2 500 85ms"}
 {"level":"error","message":"POST /auth/login 500 77ms"}
+{"level":"error","message":"POST /auth/login 500 8ms"}
+{"level":"error","message":"POST /auth/login 500 72ms"}
+{"level":"error","message":"POST /auth/login 500 70ms"}

@@ -9,5 +9,6 @@ protectedRouter.put("/users/update/:id", user.update);
 protectedRouter.get("/users/email/:email", user.findByEmail);
 protectedRouter.get("/users/id/:id", user.findById);
 protectedRouter.delete("/users/delete/:id", user.delete);
+protectedRouter.get("/user/getUserData", user.getUserData);
 
 export { protectedRouter };
