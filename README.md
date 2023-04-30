@@ -235,7 +235,8 @@ No arquivos protected e unprotedted routes estava dando conflito com rotas de me
 ### 6° Commit - CreateUser and Login Logout
 
 ***
-### 7 Passo
+
+### 7° Passo
 
 Criando GetUserData em user.ts, adicionado rota em protectedRoutes
 Primeiramente GetUserData, verifica se o token enviado no Header foi fornecido, senao objemos erro 401.
@@ -246,6 +247,7 @@ Se o usuario nao foi encontrado ele gera um Erro 404 com a messagem de usuario n
 Atribui o objeto do usuário encontrado à propriedade body do objeto ctx, que será enviado como resposta à requisição.(ctx.body = user)
 Por ultimo caso tenha algum erro ele retorna 401 dizendo token invalido!
 
+### 7° Commit GetUserData with JWTtoken
 
 
 
