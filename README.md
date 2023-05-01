@@ -281,3 +281,20 @@ Dentro do Arquivo adicionamos alguns comentarios para facilitar o entendimento.
 
 ### 8° Commit Save CryptoPrices with CoinMarketCap API
 
+***
+
+### 9° Passo
+
+Criamos um diagrama para relacionar as entidades, nesse momento vamos Criar e atualizar os Schemas.
+Alteraçoes são realizado no schema.prima
+
+A ideia é de que o cada usuario tenha um portifolio e um modo de assinatura, cada portifolio vai ter varias carteiras que pode ser de Criptomoedas, Ativos Br e Ativos Eua, 3 categorias de carteiras. Dentro de cada Carteira vai ter operaçoes de compra e venda de cada ativo para então gerar um relatorio e um dashboard do Portifolio e de cada carteira.
+
+Schema.prisma Criado.
+
+### 9° Commit Schema.prima models Atualized
+
+***
+
+### 10° Passo
+

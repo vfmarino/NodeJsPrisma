@@ -11,15 +11,93 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  email     String   @unique
-  password  String
-  cpf       String   @unique
-  telefone  String   @unique
-  createdAt DateTime @default(now())
+  id              Int    @id @default(autoincrement())
+  name            String @unique
+  email           String @unique
+  password        String
+  cpf             String @unique
+  telefone        String @unique
+
+  assinatura      Assinatura @relation(fields: [assinaturaID], references: [id])
+  assinaturaID    Int
+
+  portfolio       Portfolio[]
+
+  createdAt       DateTime @default(now())
 
   @@map("users") // para Determinar o nome da tabela
+}
+
+model Assinatura {
+  id         Int    @id @default(autoincrement())
+  name       String
+  valor      Float
+
+  user       User[]
+
+  @@map("assinaturas")
+}
+
+model Portfolio {
+  id            Int    @id @default(autoincrement())
+  name          String
+
+  user          User @relation(fields: [userID], references: [id])
+  userID        Int
+
+  carteira      Carteira[]
+
+  @@map("portfolios")
+}
+
+model Carteira {
+  id            Int    @id @default(autoincrement())
+  name          String
+
+  categoria     Categoria @relation(fields: [categoriaID], references: [id])
+  categoriaID   Int
+
+  portfolio     Portfolio @relation(fields: [portfolioID], references: [id])
+  portfolioID   Int
+
+  operacoes     Operacao[]
+
+  @@map("carteiras")
+}
+
+model Categoria {
+  id            Int    @id @default(autoincrement())
+  name          String
+
+  carteira      Carteira[]
+
+  @@map("categorias")
+}
+
+model Operacao {
+  id                Int    @id @default(autoincrement())
+  nameAtivo         String
+  idAtivo           Int
+  symbolAtivo       Int
+  valor             Float
+  createdAt         DateTime
+
+  carteira          Carteira @relation(fields: [carteiraID], references: [id])
+  carteiraID        Int
+
+  tipoNegociacao    TipoNegociacao @relation(fields: [tipoID], references: [id])
+  tipoID            Int
+
+  @@map("operacoes")
+}
+
+model TipoNegociacao{
+  id      Int @id @default(autoincrement())
+  tipo    String
+
+  operacoes Operacao[]
+
+  @@map("tiposNegociacoes")
 }
 
 model CryptoPrice {
